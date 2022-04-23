@@ -1,0 +1,48 @@
+
+<html>
+<head>
+    <title>Age Calculator</title>
+</head>
+<body>
+    <p>Enter Your Birth Date & Time :</p>
+    <input type="datetime-local" id="bdt" />
+    <button id="done">Done</button>
+    <p id="year"></p>
+    <p id="month"></p>
+    <p id="week"></p>
+    <p id="day"></p>
+    <p id="hour"></p>
+    <p id="minute"></p>
+    <p id="second"></p>
+    <script type="text/javascript">
+            document.querySelector("#done").addEventListener("click", function(){
+                const update = function(){
+                    let bdt= document.querySelector("#bdt").value,
+                    bday= new Date(bdt),
+                    bday_val= bday.getTime(),
+                    today= new Date(),
+                    now= today.getTime(),
+                    value= now - bday_val,
+                    var_sec= Math.floor(value / 1000),
+                    var_min= Math.floor(value / (1000*60)),
+                    var_hour= Math.floor(value / (1000*60*60)),
+                    var_day= Math.floor(value / (1000*60*60*24)),
+                    var_week= Math.floor(value / (1000*60*60*24*7)),
+                    var_month= Math.floor(value / (1000*60*60*24*30.4375)),
+                    var_year= Math.floor(value / (1000*60*60*24*365.25));
+                  let insert = function(x,y)  {
+                      document.querySelector(x).innerHTML = y;
+                  }
+                  insert("#year", var_year + "years");
+                  insert("#month", var_month + "months");
+                  insert("#week", var_week + "weeks");
+                  insert("#day", var_day + "days");
+                  insert("#hour", var_hour + "hours");
+                  insert("#minute", var_min + "minutes");
+                  insert("#second", var_sec + "seconds");
+                };
+                setInterval(update, 1000)
+            })
+    </script>
+</body>
+</html>
